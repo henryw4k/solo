@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>911 Online</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+
+    <!-- dependencies -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <!-- your scripts -->
+    <script src="scripts/app.js"></script>
+  </head>
+
+
+  <body>
+
+    <!-- TODO: onclick button should also send data form the page to database -->
+    <p><button onclick="geoFindMe()">Show my location</button></p>
+    <div id="out"></div>
+    <script>
+    function geoFindMe() {
+      var output = document.getElementById("out");
+
+      if (!navigator.geolocation){
+        output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+        return;
+      }
+
+      function success(position) {
+        var latitude  = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+        var img = new Image();
+        img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+        output.appendChild(img);
+      };
+
+      function error() {
+        output.innerHTML = "Unable to retrieve your location";
+      };
+
+      output.innerHTML = "<p>Locating…</p>";
+
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+    </script>
+
+
+    <textarea id="message" placeholder="Enter message" rows="6" cols="57"></textarea>
+    <div>
+      <button type="button" class="btn btn-success submit" id="send">Submit</button>
+    </div>
+  </body>
+</html>
