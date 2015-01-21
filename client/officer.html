@@ -1,3 +1,94 @@
+<!doctype html>
 <html>
-hi!
+  <head>
+    <meta charset="UTF-8">
+    <title>Police Officer Side</title>
+ <link rel="stylesheet" type="text/css" href="template.css">
+<link rel="stylesheet" href="font-awesome-4.2.0/css/font-awesome.min.css">
+<style type="text/css">
+
+#map-canvas {
+  clear: both;
+  float: left;
+  margin-top: 20px;
+  width: 100%;
+  height: 400px;
+  background-color: #CCC;
+}
+
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src = "stuff.js"></script>
+
+    <script>
+      var markerCount = 0;
+      var map;
+
+      function initialize() {
+        var map_canvas = document.getElementById('map-canvas');
+        var myLatlng = new google.maps.LatLng(33.9782439, -118.0878833)
+        var map_options = {
+          center: myLatlng,
+          zoom: 13, 
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(map_canvas, map_options)
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+        });
+      }//initialize()
+      // google.maps.event.addDomListener(window, 'load', initialize);
+  
+//       $(document).ready(initialize);
+//     var map;
+
+
+// console.log(global_lat, global_lon);
+// function initialize() {
+//     var latlng = new google.maps.LatLng(global_lat, global_lon);
+//     var options = {
+//         zoom: 15,
+//         center: latlng,
+//         mapTypeId: google.maps.MapTypeId.ROADMAP
+//     };
+
+//     map = new google.maps.Map($('#map-canvas')[0], options);
+
+//     $("#search_button").click(function(e){
+//     e.preventDefault();
+
+
+//         // Place markers on map
+//         for( i = 0; i < json.length; i++) {
+//             var latLng = new google.maps.LatLng(json[i].lat, json[i].lng);
+//             var marker = new google.maps.Marker({
+//                 position: latLng,
+//                 map: map
+//             });
+//         }
+
+//     });
+
+// }
+    </script>
+  </head>
+  <body>
+
+    <div ng-app = "">
+      <h1> POLICE OFFICER SIDE </h1>
+      <div id="map-canvas"></div> 
+
+      <p> Input something in the input box: </p>
+      <p> Name: <input type="text" ng-model="name" value="John"></p>
+      <p ng-bind="name"></p>
+
+
+      <input id="clickMe" type="button" value="clickme" onclick="addMarkerToMap(35.9782439, -120.0878833);" />
+           <input id="clickMe" type="button" value="clickme" onclick="addMarkerToMap(35., -120.);" />
+    </div>
+
+  </body>
 </html>
