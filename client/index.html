@@ -5,7 +5,7 @@
     height: 800px;
     float: left;
     position: relative;
-    border-right: 1px solid black;
+    border-right: 3px dashed black;
   }
 
   #right {
@@ -22,6 +22,12 @@
     width: 100%;
     height: 300px;
     background-color: #CCC;
+  }
+
+  #out {
+    float:left;
+    border: solid;
+    background-color: yellow;
   }
   </style>
   <head>
@@ -49,7 +55,7 @@
         global_lon = longitude;
 
         var datatext = $('#message').val();
-        output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>'+ datatext;
+        output.innerHTML = '<p>Exact location:<br>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>'+ 'Name: Marcus Phillipz<br>Blood type: AA<br>Age:60<br>Height: 5\' 9\'<br>Message: '+datatext;
         console.log(global_lat, global_lon);
         //google.maps.event.trigger(map, 'resize');
         initialize();
@@ -87,6 +93,7 @@
   </head>
   <body>
     <div id="left">
+
        <h1>911 Emergency Request</h1>
     <!-- TODO: onclick button should also send data form the page to database -->
    
